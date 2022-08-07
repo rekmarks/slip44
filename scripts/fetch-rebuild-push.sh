@@ -15,7 +15,8 @@ yarn fetch
 
 if git diff --exit-code; then
   echo "No changes detected, exiting."
-  exit 0
+  # Exit with a non-zero code so that the workflow fails
+  exit 1
 fi
 
 yarn build:clean
@@ -28,19 +29,3 @@ git config user.email github-actions@github.com
 git add .
 git commit -m "Update with latest data as of ${CURRENT_DATE}"
 git push -u origin main
-
-NUM_EXISTING_RELEASE_PRS=$( 
-  gh pr list --json headRefName |
-  jq '. |
-    map(select(
-      (.headRefName | test("^release\/"; "i"))
-    )) |
-    length'
-)
-
-if [[ $NUM_EXISTING_RELEASE_PRS == 0 ]]; then
-  echo "No existing release PR found, creating release."
-  gh workflow run create-release-pr.yml -f release-type=minor
-else
-  echo "Existing release PR found, exiting."
-fi

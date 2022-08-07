@@ -1,4 +1,4 @@
-name: Cron Rebuild
+name: Fetch and Rebuild
 
 on:
   schedule:
@@ -33,5 +33,3 @@ jobs:
 
       - name: Fetch, rebuild, push, and trigger Create Release Pull Request
         run: yarn rebuild:ci ${{ steps.date.outputs.date }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
