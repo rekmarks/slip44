@@ -18,14 +18,14 @@ on:
     branches: [main]
 
 jobs:
-  check_trigger:
+  check-trigger:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.event_name == 'workflow_run' }} && ${{ github.event.workflow_run.conclusion == 'failure' }}
+      - if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure' }}
         run: exit 1
 
   create-release-pr:
-    needs: check_trigger
+    needs: check-trigger
     runs-on: ubuntu-latest
     permissions:
       contents: write
