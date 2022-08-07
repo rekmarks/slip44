@@ -40,7 +40,7 @@ NUM_EXISTING_RELEASE_PRS=$(
 
 if [[ $NUM_EXISTING_RELEASE_PRS == 0 ]]; then
   echo "No existing release PR found, creating release."
-  gh workflow run create-relese-pr.yml -f release-type=minor
+  gh workflow run create-release-pr.yml -f release-type=minor
 else
   echo "Existing release PR found, exiting."
 fi
