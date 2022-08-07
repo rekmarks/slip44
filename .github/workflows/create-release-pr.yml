@@ -14,8 +14,10 @@ on:
         description: 'A specific version to bump to. Mutually exclusive with "release-type".'
         required: false
   workflow_run:
-    workflows: [Fetch and Rebuild]
     branches: [main]
+    types:
+      - completed
+    workflows: [Fetch and Rebuild]
 
 jobs:
   check-trigger:
