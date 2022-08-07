@@ -29,3 +29,5 @@ git config user.email "github-actions[bot]@users.noreply.github.com"
 git add .
 git commit -m "Update with latest data as of ${CURRENT_DATE}"
 git push -u origin main
+
+exit 1
