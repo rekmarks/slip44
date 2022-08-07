@@ -30,6 +30,7 @@ git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
 
 git checkout -b "${BRANCH_NAME}"
+git push --set-upstream origin "${BRANCH_NAME}"
 
 git add .
 git commit -m "${PR_TITLE}"
